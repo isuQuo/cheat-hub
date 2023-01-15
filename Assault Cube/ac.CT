@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"No Gravity"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+ 
+ 
+assert("ac_client.exe"+5B3EE,74 0F DD D8 C7 43 54 00 00 00 00) // should be unique
+
+"ac_client.exe"+5B3EE:
+  db 90 90
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"ac_client.exe"+5B3EE:
+  db 74 0F
+
+{
+// ORIGINAL CODE - INJECTION POINT: ac_client.exe+5B3EE
+
+ac_client.exe+5B3CA: 74 11                 - je ac_client.exe+5B3DD
+ac_client.exe+5B3CC: 8B C3                 - mov eax,ebx
+ac_client.exe+5B3CE: DD D8                 - fstp st(0)
+ac_client.exe+5B3D0: E8 9B 9E 03 00        - call ac_client.exe+95270
+ac_client.exe+5B3D5: D9 44 24 2C           - fld dword ptr [esp+2C]
+ac_client.exe+5B3D9: 8A 54 24 0C           - mov dl,[esp+0C]
+ac_client.exe+5B3DD: DB 43 54              - fild dword ptr [ebx+54]
+ac_client.exe+5B3E0: D8 0D E8 E6 4E 00     - fmul dword ptr [ac_client.exe+EE6E8]
+ac_client.exe+5B3E6: D8 05 E4 E6 4E 00     - fadd dword ptr [ac_client.exe+EE6E4]
+ac_client.exe+5B3EC: 84 D2                 - test dl,dl
+// ---------- INJECTING HERE ----------
+ac_client.exe+5B3EE: 74 0F                 - je ac_client.exe+5B3FF
+// ---------- DONE INJECTING  ----------
+ac_client.exe+5B3F0: DD D8                 - fstp st(0)
+ac_client.exe+5B3F2: C7 43 54 00 00 00 00  - mov [ebx+54],00000000
+ac_client.exe+5B3F9: D9 05 8C E4 4E 00     - fld dword ptr [ac_client.exe+EE48C]
+ac_client.exe+5B3FF: 80 7B 6A 00           - cmp byte ptr [ebx+6A],00
+ac_client.exe+5B403: 74 0B                 - je ac_client.exe+5B410
+ac_client.exe+5B405: DD D8                 - fstp st(0)
+ac_client.exe+5B407: C7 43 54 00 00 00 00  - mov [ebx+54],00000000
+ac_client.exe+5B40E: D9 EE                 - fldz 
+ac_client.exe+5B410: DB 45 08              - fild dword ptr [ebp+08]
+ac_client.exe+5B413: D9 44 24 24           - fld dword ptr [esp+24]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"x"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Float</VariableType>
+      <Address>029FA364-4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"y"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Float</VariableType>
+      <Address>029FA364-8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"z"</Description>
+      <VariableType>Float</VariableType>
+      <Address>029FA364</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
